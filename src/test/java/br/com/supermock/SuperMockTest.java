@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2020 SuperMock contributors
+ * This program is made available under the terms of the MIT License.
+ */
+package br.com.supermock;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.AbstractCollection;
@@ -61,15 +67,14 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import automatedexecution.AutomatedExecution;
-import mockingassignableclasses.Class1;
-import mockingassignableclasses.Class2;
-import mockingassignableclasses.Class3;
-import mockingmethod.SampleObject1;
-import mockingnotallowed.FinalClass;
-import mockingobjects.SampleEnum1;
-import mockingobjects.SampleObject2;
-import supermock.SuperMock;
+import br.com.supermock.automatedexecution.AutomatedExecution;
+import br.com.supermock.mockingassignableclasses.Class1;
+import br.com.supermock.mockingassignableclasses.Class2;
+import br.com.supermock.mockingassignableclasses.Class3;
+import br.com.supermock.mockingmethod.SampleObject1;
+import br.com.supermock.mockingnotallowed.FinalClass;
+import br.com.supermock.mockingobjects.SampleEnum1;
+import br.com.supermock.mockingobjects.SampleObject2;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SuperMockTest
@@ -258,7 +263,7 @@ public class SuperMockTest
     @Test
     public void mockingNestedObjectAndList()
     {
-        mockingobjects.SampleObject1 sampleObject1 = SUPER_MOCK.getMock(mockingobjects.SampleObject1.class);
+        br.com.supermock.mockingobjects.SampleObject1 sampleObject1 = SUPER_MOCK.getMock(br.com.supermock.mockingobjects.SampleObject1.class);
         Assert.assertEquals(Boolean.FALSE, sampleObject1.BooleanField);
         Assert.assertEquals(false, sampleObject1.booleanField);
         Assert.assertEquals(Character.valueOf(' '), sampleObject1.CharacterField);
@@ -294,11 +299,11 @@ public class SuperMockTest
             throws Throwable
     {
         SampleObject2 sampleObject2 = new SampleObject2();
-        SUPER_MOCK.setFieldMock("mockingobjects.SampleObject1.sampleObject2", sampleObject2);
+        SUPER_MOCK.setFieldMock("br.com.supermock.mockingobjects.SampleObject1.sampleObject2", sampleObject2);
         // mocking a superclass field
-        SUPER_MOCK.setFieldMock("mockingobjects.SampleObject3.field", 8989);
+        SUPER_MOCK.setFieldMock("br.com.supermock.mockingobjects.SampleObject3.field", 8989);
 
-        mockingobjects.SampleObject1 sampleObject1 = SUPER_MOCK.getRealInstanceWithNullFieldsMocked(mockingobjects.SampleObject1.class);
+        br.com.supermock.mockingobjects.SampleObject1 sampleObject1 = SUPER_MOCK.getRealInstanceWithNullFieldsMocked(br.com.supermock.mockingobjects.SampleObject1.class);
         Assert.assertEquals(sampleObject1.sampleObject2, sampleObject2);
         Assert.assertEquals(sampleObject1.getField(), 8989);
     }
@@ -316,7 +321,7 @@ public class SuperMockTest
         SUPER_MOCK.setStringMock("b");
         SUPER_MOCK.setNumericMock(123);
 
-        mockingobjects.SampleObject1 sampleObject1 = SUPER_MOCK.getMock(mockingobjects.SampleObject1.class);
+        br.com.supermock.mockingobjects.SampleObject1 sampleObject1 = SUPER_MOCK.getMock(br.com.supermock.mockingobjects.SampleObject1.class);
         Assert.assertEquals(SampleEnum1.THIRD_VALUE, sampleObject1.sampleEnum1);
         Assert.assertEquals(Boolean.TRUE, sampleObject1.BooleanField);
         Assert.assertEquals(true, sampleObject1.booleanField);
@@ -380,7 +385,7 @@ public class SuperMockTest
     @Test
     public void mockingNestedObjectAndListLooping()
     {
-        nestedinstantiatingfields.SampleObject1 sampleObject1 = SUPER_MOCK.getMock(nestedinstantiatingfields.SampleObject1.class);
+        br.com.supermock.nestedinstantiatingfields.SampleObject1 sampleObject1 = SUPER_MOCK.getMock(br.com.supermock.nestedinstantiatingfields.SampleObject1.class);
         // nested looping fields with null
         Assert.assertNotNull(sampleObject1.sampleObjects1);
         Assert.assertNotNull(sampleObject1.sampleObjects2);
@@ -399,27 +404,27 @@ public class SuperMockTest
     @Test
     public void mockingObjectWithParameterizedMethodReturn1()
     {
-        parameterizedmethodreturn1.ExecutorImpl prm = SUPER_MOCK.getMock(parameterizedmethodreturn1.ExecutorImpl.class);
-        prm.execute(new parameterizedmethodreturn1.In());
+        br.com.supermock.parameterizedmethodreturn1.ExecutorImpl prm = SUPER_MOCK.getMock(br.com.supermock.parameterizedmethodreturn1.ExecutorImpl.class);
+        prm.execute(new br.com.supermock.parameterizedmethodreturn1.In());
         Assert.assertNotNull(prm.getIn());
-        Assert.assertTrue(prm.getIn() instanceof parameterizedmethodreturn1.In);
+        Assert.assertTrue(prm.getIn() instanceof br.com.supermock.parameterizedmethodreturn1.In);
         Assert.assertNotNull(prm.getOut());
-        Assert.assertTrue(prm.getOut() instanceof parameterizedmethodreturn1.Out);
+        Assert.assertTrue(prm.getOut() instanceof br.com.supermock.parameterizedmethodreturn1.Out);
     }
 
     @Test
     public void mockingObjectWithParameterizedMethodReturn2()
     {
-        parameterizedmethodreturn2.ExecutorImpl prm = SUPER_MOCK.getMock(parameterizedmethodreturn2.ExecutorImpl.class);
-        Assert.assertNotNull(prm.execute(parameterizedmethodreturn2.In.class, parameterizedmethodreturn2.Out.class));
-        Assert.assertTrue(prm.execute(parameterizedmethodreturn2.In.class, parameterizedmethodreturn2.Out.class) instanceof parameterizedmethodreturn2.Out);
+        br.com.supermock.parameterizedmethodreturn2.ExecutorImpl prm = SUPER_MOCK.getMock(br.com.supermock.parameterizedmethodreturn2.ExecutorImpl.class);
+        Assert.assertNotNull(prm.execute(br.com.supermock.parameterizedmethodreturn2.In.class, br.com.supermock.parameterizedmethodreturn2.Out.class));
+        Assert.assertTrue(prm.execute(br.com.supermock.parameterizedmethodreturn2.In.class, br.com.supermock.parameterizedmethodreturn2.Out.class) instanceof br.com.supermock.parameterizedmethodreturn2.Out);
     }
 
     @Test
     public void mockingObjectWithParameterizedMethodReturnCache1()
     {
-        parameterizedmethodreturn1.ExecutorImpl prm1 = SUPER_MOCK.getMock(parameterizedmethodreturn1.ExecutorImpl.class);
-        parameterizedmethodreturn1.ExecutorImpl prm2 = SUPER_MOCK.getMock(parameterizedmethodreturn1.ExecutorImpl.class);
+        br.com.supermock.parameterizedmethodreturn1.ExecutorImpl prm1 = SUPER_MOCK.getMock(br.com.supermock.parameterizedmethodreturn1.ExecutorImpl.class);
+        br.com.supermock.parameterizedmethodreturn1.ExecutorImpl prm2 = SUPER_MOCK.getMock(br.com.supermock.parameterizedmethodreturn1.ExecutorImpl.class);
         Assert.assertEquals(prm1.getIn(), prm1.getIn());
         Assert.assertEquals(prm1.getOut(), prm1.getOut());
 
@@ -433,34 +438,34 @@ public class SuperMockTest
     @Test
     public void mockingObjectWithParameterizedMethodReturnCache2()
     {
-        parameterizedmethodreturn2.ExecutorImpl prm1        = SUPER_MOCK.getMock(parameterizedmethodreturn2.ExecutorImpl.class);
-        parameterizedmethodreturn2.ExecutorImpl prm2        = SUPER_MOCK.getMock(parameterizedmethodreturn2.ExecutorImpl.class);
+        br.com.supermock.parameterizedmethodreturn2.ExecutorImpl prm1        = SUPER_MOCK.getMock(br.com.supermock.parameterizedmethodreturn2.ExecutorImpl.class);
+        br.com.supermock.parameterizedmethodreturn2.ExecutorImpl prm2        = SUPER_MOCK.getMock(br.com.supermock.parameterizedmethodreturn2.ExecutorImpl.class);
 
-        parameterizedmethodreturn2.Out          prm1GetOut1 = prm1.execute(parameterizedmethodreturn2.In.class, parameterizedmethodreturn2.Out.class);
-        parameterizedmethodreturn2.Out          prm1GetOut2 = prm1.execute(parameterizedmethodreturn2.In.class, parameterizedmethodreturn2.Out.class);
+        br.com.supermock.parameterizedmethodreturn2.Out          prm1GetOut1 = prm1.execute(br.com.supermock.parameterizedmethodreturn2.In.class, br.com.supermock.parameterizedmethodreturn2.Out.class);
+        br.com.supermock.parameterizedmethodreturn2.Out          prm1GetOut2 = prm1.execute(br.com.supermock.parameterizedmethodreturn2.In.class, br.com.supermock.parameterizedmethodreturn2.Out.class);
         Assert.assertEquals(prm1GetOut1, prm1GetOut2);
 
-        parameterizedmethodreturn2.Out prm2GetOut1 = prm2.execute(parameterizedmethodreturn2.In.class, parameterizedmethodreturn2.Out.class);
-        parameterizedmethodreturn2.Out prm2GetOut2 = prm2.execute(parameterizedmethodreturn2.In.class, parameterizedmethodreturn2.Out.class);
+        br.com.supermock.parameterizedmethodreturn2.Out prm2GetOut1 = prm2.execute(br.com.supermock.parameterizedmethodreturn2.In.class, br.com.supermock.parameterizedmethodreturn2.Out.class);
+        br.com.supermock.parameterizedmethodreturn2.Out prm2GetOut2 = prm2.execute(br.com.supermock.parameterizedmethodreturn2.In.class, br.com.supermock.parameterizedmethodreturn2.Out.class);
         Assert.assertEquals(prm2GetOut1, prm2GetOut2);
     }
 
     @Test
     public void mockingMethodReturnWithSimpleMethodSignature1()
     {
-        mockingmethod.SampleObject1 sampleMethodReturn = new mockingmethod.SampleObject1();
-        SUPER_MOCK.setMethodReturnMock("mockingmethod.SampleObject1.getSampleObject1", sampleMethodReturn);
-        mockingmethod.SampleObject1 sampleObject1 = SUPER_MOCK.getMock(mockingmethod.SampleObject1.class);
+        br.com.supermock.mockingmethod.SampleObject1 sampleMethodReturn = new br.com.supermock.mockingmethod.SampleObject1();
+        SUPER_MOCK.setMethodReturnMock("br.com.supermock.mockingmethod.SampleObject1.getSampleObject1", sampleMethodReturn);
+        br.com.supermock.mockingmethod.SampleObject1 sampleObject1 = SUPER_MOCK.getMock(br.com.supermock.mockingmethod.SampleObject1.class);
         Assert.assertEquals(sampleMethodReturn, sampleObject1.getSampleObject1(0, null));
     }
 
     @Test
     public void mockingMethodReturnWithSimpleMethodSignature2()
     {
-        mockingmethod.SampleObject1 sampleMethodReturn1 = new mockingmethod.SampleObject1();
-        mockingmethod.SampleObject1 sampleMethodReturn2 = new mockingmethod.SampleObject1();
-        SUPER_MOCK.setMethodReturnMocks("mockingmethod.SampleObject1.getSampleObject1", new Object[] { sampleMethodReturn1, sampleMethodReturn2 });
-        mockingmethod.SampleObject1 sampleObject1 = SUPER_MOCK.getMock(mockingmethod.SampleObject1.class);
+        br.com.supermock.mockingmethod.SampleObject1 sampleMethodReturn1 = new br.com.supermock.mockingmethod.SampleObject1();
+        br.com.supermock.mockingmethod.SampleObject1 sampleMethodReturn2 = new br.com.supermock.mockingmethod.SampleObject1();
+        SUPER_MOCK.setMethodReturnMocks("br.com.supermock.mockingmethod.SampleObject1.getSampleObject1", new Object[] { sampleMethodReturn1, sampleMethodReturn2 });
+        br.com.supermock.mockingmethod.SampleObject1 sampleObject1 = SUPER_MOCK.getMock(br.com.supermock.mockingmethod.SampleObject1.class);
         Assert.assertEquals(sampleMethodReturn1, sampleObject1.getSampleObject1(0, null));
         Assert.assertEquals(sampleMethodReturn2, sampleObject1.getSampleObject1(0, null));
         Assert.assertEquals(sampleMethodReturn2, sampleObject1.getSampleObject1(0, null));
@@ -469,19 +474,19 @@ public class SuperMockTest
     @Test
     public void mockingMethodReturnWithCompleteMethodSignature1()
     {
-        mockingmethod.SampleObject1 sampleMethodReturn = new mockingmethod.SampleObject1();
-        SUPER_MOCK.setMethodReturnMock("mockingmethod.SampleObject1.getSampleObject1(int, java.lang.String)", sampleMethodReturn);
-        mockingmethod.SampleObject1 sampleObject1 = SUPER_MOCK.getMock(mockingmethod.SampleObject1.class);
+        br.com.supermock.mockingmethod.SampleObject1 sampleMethodReturn = new br.com.supermock.mockingmethod.SampleObject1();
+        SUPER_MOCK.setMethodReturnMock("br.com.supermock.mockingmethod.SampleObject1.getSampleObject1(int, java.lang.String)", sampleMethodReturn);
+        br.com.supermock.mockingmethod.SampleObject1 sampleObject1 = SUPER_MOCK.getMock(br.com.supermock.mockingmethod.SampleObject1.class);
         Assert.assertEquals(sampleMethodReturn, sampleObject1.getSampleObject1(0, null));
     }
 
     @Test
     public void mockingMethodReturnWithCompleteMethodSignature2()
     {
-        mockingmethod.SampleObject1 sampleMethodReturn1 = new mockingmethod.SampleObject1();
-        mockingmethod.SampleObject1 sampleMethodReturn2 = new mockingmethod.SampleObject1();
-        SUPER_MOCK.setMethodReturnMocks("mockingmethod.SampleObject1.getSampleObject1(int, java.lang.String)", new Object[] { sampleMethodReturn1, sampleMethodReturn2 });
-        mockingmethod.SampleObject1 sampleObject1 = SUPER_MOCK.getMock(mockingmethod.SampleObject1.class);
+        br.com.supermock.mockingmethod.SampleObject1 sampleMethodReturn1 = new br.com.supermock.mockingmethod.SampleObject1();
+        br.com.supermock.mockingmethod.SampleObject1 sampleMethodReturn2 = new br.com.supermock.mockingmethod.SampleObject1();
+        SUPER_MOCK.setMethodReturnMocks("br.com.supermock.mockingmethod.SampleObject1.getSampleObject1(int, java.lang.String)", new Object[] { sampleMethodReturn1, sampleMethodReturn2 });
+        br.com.supermock.mockingmethod.SampleObject1 sampleObject1 = SUPER_MOCK.getMock(br.com.supermock.mockingmethod.SampleObject1.class);
         Assert.assertEquals(sampleMethodReturn1, sampleObject1.getSampleObject1(0, null));
         Assert.assertEquals(sampleMethodReturn2, sampleObject1.getSampleObject1(0, null));
         Assert.assertEquals(sampleMethodReturn2, sampleObject1.getSampleObject1(0, null));
@@ -492,11 +497,11 @@ public class SuperMockTest
     {
         Throwable mockedException    = new NullPointerException();
         Throwable generatedException = null;
-        SUPER_MOCK.setMethodExceptionOnMockExecution("parameterizedmethodreturn2.ExecutorImpl.execute", mockedException);
-        parameterizedmethodreturn2.ExecutorImpl prm = SUPER_MOCK.getMock(parameterizedmethodreturn2.ExecutorImpl.class);
+        SUPER_MOCK.setMethodExceptionOnMockExecution("br.com.supermock.parameterizedmethodreturn2.ExecutorImpl.execute", mockedException);
+        br.com.supermock.parameterizedmethodreturn2.ExecutorImpl prm = SUPER_MOCK.getMock(br.com.supermock.parameterizedmethodreturn2.ExecutorImpl.class);
         try
         {
-            prm.execute(parameterizedmethodreturn2.In.class, parameterizedmethodreturn2.Out.class);
+            prm.execute(br.com.supermock.parameterizedmethodreturn2.In.class, br.com.supermock.parameterizedmethodreturn2.Out.class);
         }
         catch (Throwable e)
         {
@@ -508,27 +513,27 @@ public class SuperMockTest
     @Test
     public void mockingExceptionWithSimpleMethodSignature2()
     {
-        Throwable                      mockedException     = new NullPointerException();
-        Throwable                      generatedException  = null;
-        Object                         mockedReturn1       = null;
-        Object                         mockedReturn2       = null;
-        parameterizedmethodreturn2.Out sampleMethodReturn1 = new parameterizedmethodreturn2.Out();
-        parameterizedmethodreturn2.Out sampleMethodReturn2 = new parameterizedmethodreturn2.Out();
-        SUPER_MOCK.setMethodExceptionOnMockExecution("parameterizedmethodreturn2.ExecutorImpl.execute", new Throwable[] { null, mockedException, null });
-        SUPER_MOCK.setMethodReturnMocks("parameterizedmethodreturn2.ExecutorImpl.execute", new Object[] { sampleMethodReturn1, null, sampleMethodReturn2 });
-        parameterizedmethodreturn2.ExecutorImpl prm = SUPER_MOCK.getMock(parameterizedmethodreturn2.ExecutorImpl.class);
+        Throwable                                       mockedException     = new NullPointerException();
+        Throwable                                       generatedException  = null;
+        Object                                          mockedReturn1       = null;
+        Object                                          mockedReturn2       = null;
+        br.com.supermock.parameterizedmethodreturn2.Out sampleMethodReturn1 = new br.com.supermock.parameterizedmethodreturn2.Out();
+        br.com.supermock.parameterizedmethodreturn2.Out sampleMethodReturn2 = new br.com.supermock.parameterizedmethodreturn2.Out();
+        SUPER_MOCK.setMethodExceptionOnMockExecution("br.com.supermock.parameterizedmethodreturn2.ExecutorImpl.execute", new Throwable[] { null, mockedException, null });
+        SUPER_MOCK.setMethodReturnMocks("br.com.supermock.parameterizedmethodreturn2.ExecutorImpl.execute", new Object[] { sampleMethodReturn1, null, sampleMethodReturn2 });
+        br.com.supermock.parameterizedmethodreturn2.ExecutorImpl prm = SUPER_MOCK.getMock(br.com.supermock.parameterizedmethodreturn2.ExecutorImpl.class);
         // here not thrown exception
-        mockedReturn1 = prm.execute(parameterizedmethodreturn2.In.class, parameterizedmethodreturn2.Out.class);
+        mockedReturn1 = prm.execute(br.com.supermock.parameterizedmethodreturn2.In.class, br.com.supermock.parameterizedmethodreturn2.Out.class);
         try
         {
-            prm.execute(parameterizedmethodreturn2.In.class, parameterizedmethodreturn2.Out.class);
+            prm.execute(br.com.supermock.parameterizedmethodreturn2.In.class, br.com.supermock.parameterizedmethodreturn2.Out.class);
         }
         catch (Throwable e)
         {
             generatedException = e;
         }
         // here not thrown exception
-        mockedReturn2 = prm.execute(parameterizedmethodreturn2.In.class, parameterizedmethodreturn2.Out.class);
+        mockedReturn2 = prm.execute(br.com.supermock.parameterizedmethodreturn2.In.class, br.com.supermock.parameterizedmethodreturn2.Out.class);
         Assert.assertEquals(mockedException, generatedException);
         Assert.assertEquals(sampleMethodReturn1, mockedReturn1);
         Assert.assertEquals(sampleMethodReturn2, mockedReturn2);
@@ -539,11 +544,11 @@ public class SuperMockTest
     {
         Throwable mockedException    = new NullPointerException();
         Throwable generatedException = null;
-        SUPER_MOCK.setMethodExceptionOnMockExecution("parameterizedmethodreturn2.ExecutorImpl.execute(java.lang.Class, java.lang.Class)", mockedException);
-        parameterizedmethodreturn2.ExecutorImpl prm = SUPER_MOCK.getMock(parameterizedmethodreturn2.ExecutorImpl.class);
+        SUPER_MOCK.setMethodExceptionOnMockExecution("br.com.supermock.parameterizedmethodreturn2.ExecutorImpl.execute(java.lang.Class, java.lang.Class)", mockedException);
+        br.com.supermock.parameterizedmethodreturn2.ExecutorImpl prm = SUPER_MOCK.getMock(br.com.supermock.parameterizedmethodreturn2.ExecutorImpl.class);
         try
         {
-            prm.execute(parameterizedmethodreturn2.In.class, parameterizedmethodreturn2.Out.class);
+            prm.execute(br.com.supermock.parameterizedmethodreturn2.In.class, br.com.supermock.parameterizedmethodreturn2.Out.class);
         }
         catch (Throwable e)
         {
@@ -556,27 +561,27 @@ public class SuperMockTest
     public void mockingExceptionWithCompleteMethodSignature2()
             throws Throwable
     {
-        Throwable                      mockedException     = new NullPointerException();
-        Throwable                      generatedException  = null;
-        Object                         mockedReturn1       = null;
-        Object                         mockedReturn2       = null;
-        parameterizedmethodreturn2.Out sampleMethodReturn1 = new parameterizedmethodreturn2.Out();
-        parameterizedmethodreturn2.Out sampleMethodReturn2 = new parameterizedmethodreturn2.Out();
-        SUPER_MOCK.setMethodExceptionOnMockExecution("parameterizedmethodreturn2.ExecutorImpl.execute(java.lang.Class, java.lang.Class)", new Throwable[] { null, mockedException, null });
-        SUPER_MOCK.setMethodReturnMocks("parameterizedmethodreturn2.ExecutorImpl.execute", new Object[] { sampleMethodReturn1, null, sampleMethodReturn2 });
-        parameterizedmethodreturn2.ExecutorImpl prm = SUPER_MOCK.getMock(parameterizedmethodreturn2.ExecutorImpl.class);
+        Throwable                                       mockedException     = new NullPointerException();
+        Throwable                                       generatedException  = null;
+        Object                                          mockedReturn1       = null;
+        Object                                          mockedReturn2       = null;
+        br.com.supermock.parameterizedmethodreturn2.Out sampleMethodReturn1 = new br.com.supermock.parameterizedmethodreturn2.Out();
+        br.com.supermock.parameterizedmethodreturn2.Out sampleMethodReturn2 = new br.com.supermock.parameterizedmethodreturn2.Out();
+        SUPER_MOCK.setMethodExceptionOnMockExecution("br.com.supermock.parameterizedmethodreturn2.ExecutorImpl.execute(java.lang.Class, java.lang.Class)", new Throwable[] { null, mockedException, null });
+        SUPER_MOCK.setMethodReturnMocks("br.com.supermock.parameterizedmethodreturn2.ExecutorImpl.execute", new Object[] { sampleMethodReturn1, null, sampleMethodReturn2 });
+        br.com.supermock.parameterizedmethodreturn2.ExecutorImpl prm = SUPER_MOCK.getMock(br.com.supermock.parameterizedmethodreturn2.ExecutorImpl.class);
         // here not thrown exception
-        mockedReturn1 = prm.execute(parameterizedmethodreturn2.In.class, parameterizedmethodreturn2.Out.class);
+        mockedReturn1 = prm.execute(br.com.supermock.parameterizedmethodreturn2.In.class, br.com.supermock.parameterizedmethodreturn2.Out.class);
         try
         {
-            prm.execute(parameterizedmethodreturn2.In.class, parameterizedmethodreturn2.Out.class);
+            prm.execute(br.com.supermock.parameterizedmethodreturn2.In.class, br.com.supermock.parameterizedmethodreturn2.Out.class);
         }
         catch (Throwable e)
         {
             generatedException = e;
         }
         // here not thrown exception
-        mockedReturn2 = prm.execute(parameterizedmethodreturn2.In.class, parameterizedmethodreturn2.Out.class);
+        mockedReturn2 = prm.execute(br.com.supermock.parameterizedmethodreturn2.In.class, br.com.supermock.parameterizedmethodreturn2.Out.class);
         Assert.assertEquals(mockedException, generatedException);
         Assert.assertEquals(sampleMethodReturn1, mockedReturn1);
         Assert.assertEquals(sampleMethodReturn2, mockedReturn2);
@@ -595,19 +600,19 @@ public class SuperMockTest
         Object    mockedReturn2_firstCall = null;
         Object    mockedReturn2_thirdCall = null;
 
-        SUPER_MOCK.setMethodExceptionOnMockExecution("parameterizedmethodreturn2.ExecutorImpl.execute(java.lang.Class, java.lang.Class)", new Throwable[] { null, mockedException, null });
+        SUPER_MOCK.setMethodExceptionOnMockExecution("br.com.supermock.parameterizedmethodreturn2.ExecutorImpl.execute(java.lang.Class, java.lang.Class)", new Throwable[] { null, mockedException, null });
 
-        parameterizedmethodreturn2.ExecutorImpl prm = SUPER_MOCK.getMock(parameterizedmethodreturn2.ExecutorImpl.class);
+        br.com.supermock.parameterizedmethodreturn2.ExecutorImpl prm = SUPER_MOCK.getMock(br.com.supermock.parameterizedmethodreturn2.ExecutorImpl.class);
 
         // here not thrown exception
-        mockedReturn1_firstCall = prm.execute(parameterizedmethodreturn1.In.class, parameterizedmethodreturn1.Out.class);
+        mockedReturn1_firstCall = prm.execute(br.com.supermock.parameterizedmethodreturn1.In.class, br.com.supermock.parameterizedmethodreturn1.Out.class);
 
         // observe that the type of the parameterized param differ from last statement
-        mockedReturn2_firstCall = prm.execute(parameterizedmethodreturn2.In.class, parameterizedmethodreturn2.Out.class);
+        mockedReturn2_firstCall = prm.execute(br.com.supermock.parameterizedmethodreturn2.In.class, br.com.supermock.parameterizedmethodreturn2.Out.class);
 
         try
         {
-            prm.execute(parameterizedmethodreturn1.In.class, parameterizedmethodreturn1.Out.class);
+            prm.execute(br.com.supermock.parameterizedmethodreturn1.In.class, br.com.supermock.parameterizedmethodreturn1.Out.class);
         }
         catch (Throwable e)
         {
@@ -616,7 +621,7 @@ public class SuperMockTest
 
         try
         {
-            prm.execute(parameterizedmethodreturn2.In.class, parameterizedmethodreturn2.Out.class);
+            prm.execute(br.com.supermock.parameterizedmethodreturn2.In.class, br.com.supermock.parameterizedmethodreturn2.Out.class);
         }
         catch (Throwable e)
         {
@@ -624,21 +629,21 @@ public class SuperMockTest
         }
 
         // here not thrown exception
-        mockedReturn1_thirdCall = prm.execute(parameterizedmethodreturn1.In.class, parameterizedmethodreturn1.Out.class);
-        mockedReturn2_thirdCall = prm.execute(parameterizedmethodreturn2.In.class, parameterizedmethodreturn2.Out.class);
+        mockedReturn1_thirdCall = prm.execute(br.com.supermock.parameterizedmethodreturn1.In.class, br.com.supermock.parameterizedmethodreturn1.Out.class);
+        mockedReturn2_thirdCall = prm.execute(br.com.supermock.parameterizedmethodreturn2.In.class, br.com.supermock.parameterizedmethodreturn2.Out.class);
 
         Assert.assertEquals(mockedException, generatedException1);
         Assert.assertEquals(mockedException, generatedException2);
 
         Assert.assertNotNull(mockedReturn1_firstCall);
         Assert.assertNotNull(mockedReturn1_thirdCall);
-        Assert.assertTrue(mockedReturn1_firstCall instanceof parameterizedmethodreturn1.Out);
-        Assert.assertTrue(mockedReturn1_thirdCall instanceof parameterizedmethodreturn1.Out);
+        Assert.assertTrue(mockedReturn1_firstCall instanceof br.com.supermock.parameterizedmethodreturn1.Out);
+        Assert.assertTrue(mockedReturn1_thirdCall instanceof br.com.supermock.parameterizedmethodreturn1.Out);
 
         Assert.assertNotNull(mockedReturn2_firstCall);
         Assert.assertNotNull(mockedReturn2_thirdCall);
-        Assert.assertTrue(mockedReturn2_firstCall instanceof parameterizedmethodreturn2.Out);
-        Assert.assertTrue(mockedReturn2_thirdCall instanceof parameterizedmethodreturn2.Out);
+        Assert.assertTrue(mockedReturn2_firstCall instanceof br.com.supermock.parameterizedmethodreturn2.Out);
+        Assert.assertTrue(mockedReturn2_thirdCall instanceof br.com.supermock.parameterizedmethodreturn2.Out);
     }
 
     @Test
@@ -655,7 +660,7 @@ public class SuperMockTest
             throws Throwable
     {
         SUPER_MOCK.setNumericMock(1);
-        SUPER_MOCK.setMethodNotToExecute("automatedexecution.AutomatedExecution.add1(int)");
+        SUPER_MOCK.setMethodNotToExecute("br.com.supermock.automatedexecution.AutomatedExecution.add1(int)");
         AutomatedExecution result = SUPER_MOCK.executeClass(AutomatedExecution.class);
         Assert.assertEquals(2, result.getCounter());
     }
@@ -665,7 +670,7 @@ public class SuperMockTest
             throws Throwable
     {
         SUPER_MOCK.setNumericMock(1);
-        SUPER_MOCK.setMethodNotToExecute("automatedexecution.AutomatedExecution.add2(int)");
+        SUPER_MOCK.setMethodNotToExecute("br.com.supermock.automatedexecution.AutomatedExecution.add2(int)");
         AutomatedExecution result = SUPER_MOCK.executeClass(AutomatedExecution.class);
         Assert.assertEquals(1, result.getCounter());
     }
@@ -675,8 +680,8 @@ public class SuperMockTest
             throws Throwable
     {
         SUPER_MOCK.setNumericMock(1);
-        SUPER_MOCK.setMethodNotToExecute("automatedexecution.AutomatedExecution.add1");
-        SUPER_MOCK.setMethodNotToExecute("automatedexecution.AutomatedExecution.add2");
+        SUPER_MOCK.setMethodNotToExecute("br.com.supermock.automatedexecution.AutomatedExecution.add1");
+        SUPER_MOCK.setMethodNotToExecute("br.com.supermock.automatedexecution.AutomatedExecution.add2");
         AutomatedExecution result = SUPER_MOCK.executeClass(AutomatedExecution.class);
         Assert.assertEquals(0, result.getCounter());
     }
@@ -685,8 +690,8 @@ public class SuperMockTest
     public void automatedExecution5()
             throws Throwable
     {
-        SUPER_MOCK.setMockedParametersOnMethodExecution("automatedexecution.AutomatedExecution.add1", new Object[] { 2 });
-        SUPER_MOCK.setMockedParametersOnMethodExecution("automatedexecution.AutomatedExecution.add2", new Object[] { 3 });
+        SUPER_MOCK.setMockedParametersOnMethodExecution("br.com.supermock.automatedexecution.AutomatedExecution.add1", new Object[] { 2 });
+        SUPER_MOCK.setMockedParametersOnMethodExecution("br.com.supermock.automatedexecution.AutomatedExecution.add2", new Object[] { 3 });
         AutomatedExecution result = SUPER_MOCK.executeClass(AutomatedExecution.class);
         Assert.assertEquals(8, result.getCounter());
     }
@@ -695,9 +700,9 @@ public class SuperMockTest
     public void automatedExecution6()
             throws Throwable
     {
-        SUPER_MOCK.setMethodNotToExecute("automatedexecution.AutomatedExecution.add1");
-        SUPER_MOCK.setMockedParametersOnMethodExecution("automatedexecution.AutomatedExecution.add1(int)", new Object[] { 2 });
-        SUPER_MOCK.setMockedParametersOnMethodExecution("automatedexecution.AutomatedExecution.add2(int)", new Object[] { 3 });
+        SUPER_MOCK.setMethodNotToExecute("br.com.supermock.automatedexecution.AutomatedExecution.add1");
+        SUPER_MOCK.setMockedParametersOnMethodExecution("br.com.supermock.automatedexecution.AutomatedExecution.add1(int)", new Object[] { 2 });
+        SUPER_MOCK.setMockedParametersOnMethodExecution("br.com.supermock.automatedexecution.AutomatedExecution.add2(int)", new Object[] { 3 });
         AutomatedExecution result = SUPER_MOCK.executeClass(AutomatedExecution.class);
         Assert.assertEquals(6, result.getCounter());
     }
@@ -706,9 +711,9 @@ public class SuperMockTest
     public void automatedExecution7()
             throws Throwable
     {
-        SUPER_MOCK.setMethodNotToExecute("automatedexecution.AutomatedExecution.add2");
-        SUPER_MOCK.setMockedParametersOnMethodExecution("automatedexecution.AutomatedExecution.add1(int)", new Object[] { 2 });
-        SUPER_MOCK.setMockedParametersOnMethodExecution("automatedexecution.AutomatedExecution.add2(int)", new Object[] { 3 });
+        SUPER_MOCK.setMethodNotToExecute("br.com.supermock.automatedexecution.AutomatedExecution.add2");
+        SUPER_MOCK.setMockedParametersOnMethodExecution("br.com.supermock.automatedexecution.AutomatedExecution.add1(int)", new Object[] { 2 });
+        SUPER_MOCK.setMockedParametersOnMethodExecution("br.com.supermock.automatedexecution.AutomatedExecution.add2(int)", new Object[] { 3 });
         AutomatedExecution result = SUPER_MOCK.executeClass(AutomatedExecution.class);
         Assert.assertEquals(2, result.getCounter());
     }
