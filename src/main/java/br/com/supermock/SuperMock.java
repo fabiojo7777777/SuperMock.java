@@ -96,100 +96,100 @@ public class SuperMock
         DELEGATE.resetMocks();
     }
 
-    public void setStringMock(String valorMockString)
+    public void setStringMock(String string)
     {
-        DELEGATE.setStringMock(valorMockString);
+        DELEGATE.setStringMock(string);
     }
 
-    public void setCharacterMock(Character valorMockCaracter)
+    public void setCharacterMock(Character character)
     {
-        DELEGATE.setCharacterMock(valorMockCaracter);
+        DELEGATE.setCharacterMock(character);
     }
 
-    public void setBooleanMock(Boolean valorMockBoolean)
+    public void setBooleanMock(Boolean bool)
     {
-        DELEGATE.setBooleanMock(valorMockBoolean);
+        DELEGATE.setBooleanMock(bool);
     }
 
-    public void setNumericMock(Double valorMockNumerico)
+    public void setNumericMock(Double number)
     {
-        DELEGATE.setNumericMock(valorMockNumerico);
+        DELEGATE.setNumericMock(number);
     }
 
-    public void setNumericMock(Integer valorMockNumerico)
+    public void setNumericMock(Integer number)
     {
-        DELEGATE.setNumericMock(valorMockNumerico);
+        DELEGATE.setNumericMock(number);
     }
 
-    public void setTimestampAndDateMock(Date valorMockTimestampOuDate)
+    public void setTimestampAndDateMock(Date date)
     {
-        DELEGATE.setTimestampAndDateMock(valorMockTimestampOuDate);
+        DELEGATE.setTimestampAndDateMock(date);
     }
 
-    public void setTimestampAndDateMock(Long valorMockTimestampOuDate)
+    public void setTimestampAndDateMock(Long time)
     {
-        DELEGATE.setTimestampAndDateMock(valorMockTimestampOuDate);
+        DELEGATE.setTimestampAndDateMock(time);
     }
 
-    public void setMock(String nomeClasse, Object valorInstanciado)
+    public void setMock(String className, Object mock)
     {
-        DELEGATE.setMock(nomeClasse, valorInstanciado);
+        DELEGATE.setMock(className, mock);
     }
 
-    public <T> void setMock(Class<T> classe, T valorInstanciado)
+    public <T> void setMock(Class<T> clazz, T mock)
     {
-        DELEGATE.setMock(classe, valorInstanciado);
+        DELEGATE.setMock(clazz, mock);
     }
 
-    public void setMaximumNestedMockInstantiation(int quantidadeMaximaAninhamentoInstanciacaoMock)
+    public void setMaximumNestedMockInstantiation(int maximumNestedMockInstantiation)
     {
-        DELEGATE.setMaximumNestedMockInstantiation(quantidadeMaximaAninhamentoInstanciacaoMock);
+        DELEGATE.setMaximumNestedMockInstantiation(maximumNestedMockInstantiation);
     }
 
-    public void setMaximumExecutionNumberOnMethod(int quantidadeMaximaExecucaoPorMetodoNoObjeto)
+    public void setMaximumExecutionNumberOnMethod(int maximumExecutionNumberOnMethod)
     {
-        DELEGATE.setMaximumExecutionNumberOnMethod(quantidadeMaximaExecucaoPorMetodoNoObjeto);
+        DELEGATE.setMaximumExecutionNumberOnMethod(maximumExecutionNumberOnMethod);
     }
 
-    public void setCollectionItemsMocked(int quantidadeElementosMockArray)
+    public void setCollectionItemsMocked(int number)
     {
-        DELEGATE.setCollectionItemsMocked(quantidadeElementosMockArray);
+        DELEGATE.setCollectionItemsMocked(number);
     }
 
-    public void setFieldMock(String nomeAtributo, Object valorAtributo)
+    public void setFieldMock(String fieldSignature, Object mock)
     {
-        DELEGATE.setFieldMock(nomeAtributo, valorAtributo);
+        DELEGATE.setFieldMock(fieldSignature, mock);
     }
 
-    public void setMethodReturnMock(String nomeMetodo, Object valorRetorno)
+    public void setMethodReturnMock(String methodSignature, Object returnValue)
     {
-        DELEGATE.setMethodReturnMock(nomeMetodo, valorRetorno);
+        DELEGATE.setMethodReturnMock(methodSignature, returnValue);
     }
 
-    public void setMethodReturnMocks(String nomeMetodo, Object[] valorRetorno)
+    public void setMethodReturnMocks(String methodSignature, Object[] returnValues)
     {
-        DELEGATE.setMethodReturnMocks(nomeMetodo, valorRetorno);
+        DELEGATE.setMethodReturnMocks(methodSignature, returnValues);
     }
 
-    public void setMethodExceptionOnMockExecution(String nomeMetodo, Throwable excecao)
+    public void setMethodExceptionOnMockExecution(String methodSignature, Throwable throwable)
     {
-        DELEGATE.setMethodExceptionOnMockExecution(nomeMetodo, excecao);
+        DELEGATE.setMethodExceptionOnMockExecution(methodSignature, throwable);
     }
 
-    public void setMethodExceptionOnMockExecution(String nomeMetodo, Throwable[] excecao)
+    public void setMethodExceptionOnMockExecution(String methodSignature, Throwable[] throwables)
     {
-        DELEGATE.setMethodExceptionOnMockExecution(nomeMetodo, excecao);
+        DELEGATE.setMethodExceptionOnMockExecution(methodSignature, throwables);
     }
 
-    public <T> T getMock(Class<T> classe)
+    public <T> T getMock(Class<T> clazz)
     {
-        return DELEGATE.getMock(classe);
+        return DELEGATE.getMock(clazz);
     }
 
-    public <T> T getRealInstanceWithNullFieldsMocked(Class<T> classe)
+    public <T> T getRealInstanceWithNullFieldsMocked(Class<T> clazz)
             throws Throwable
     {
-        return DELEGATE.getRealInstanceWithNullFieldsMocked(classe);
+        return DELEGATE.getRealInstanceWithNullFieldsMocked(clazz);
     }
 
     public void setMockedParametersOnMethodExecution(String methodSignature, Object... parameterValues)
@@ -197,45 +197,45 @@ public class SuperMock
         DELEGATE.setMockedParametersOnMethodExecution(methodSignature, parameterValues);
     }
 
-    public void setMethodNotToExecute(String nomeClasseMetodoNaoExecutar)
+    public void setMethodNotToExecute(String methodSignature)
     {
-        DELEGATE.setMethodNotToExecute(nomeClasseMetodoNaoExecutar);
+        DELEGATE.setMethodNotToExecute(methodSignature);
     }
 
-    public <T> T executeClass(Class<T> classe)
+    public <T> T executeClass(Class<T> clazz)
             throws Throwable
     {
-        return DELEGATE.executeClass(classe);
+        return DELEGATE.executeClass(clazz);
     }
 
-    public Object[] executeClasses(Class<?>... listaClasse)
+    public Object[] executeClasses(Class<?>... classes)
             throws Throwable
     {
-        return DELEGATE.executeClasses(listaClasse);
+        return DELEGATE.executeClasses(classes);
     }
 
-    public List<Object> executeClasses(List<Class<?>> listaClasse)
+    public List<Object> executeClasses(List<Class<?>> classes)
             throws Throwable
     {
-        return DELEGATE.executeClasses(listaClasse);
+        return DELEGATE.executeClasses(classes);
     }
 
-    public void executeObject(Object objeto)
+    public void executeObject(Object object)
             throws Throwable
     {
-        DELEGATE.executeObject(objeto);
+        DELEGATE.executeObject(object);
     }
 
-    public void executeObjects(Object... listaObjeto)
+    public void executeObjects(Object... objects)
             throws Throwable
     {
-        DELEGATE.executeObjects(listaObjeto);
+        DELEGATE.executeObjects(objects);
     }
 
-    public void executeObjects(List<Object> listaObjeto)
+    public void executeObjects(List<Object> objects)
             throws Throwable
     {
-        DELEGATE.executeObjects((List<Object>) listaObjeto);
+        DELEGATE.executeObjects((List<Object>) objects);
     }
 
     private static class Delegate
@@ -703,19 +703,19 @@ public class SuperMock
             setMock(mockClazz, mock);
         }
 
-        public <T> void setMock(Class<T> clazz, T object)
+        public <T> void setMock(Class<T> clazz, T mock)
         {
             validateMockingNotInitialized();
             if (clazz != null)
             {
-                if (object != null)
+                if (mock != null)
                 {
-                    if (!boxedType(clazz).isAssignableFrom(boxedType(object.getClass())))
+                    if (!boxedType(clazz).isAssignableFrom(boxedType(mock.getClass())))
                     {
-                        throw new ClassCastException(String.format(RUNTIME_EXCEPTION_INVALID_MOCK_TYPE_FOR_TYPE, clazz.getCanonicalName(), object.getClass().getName(), clazz.getName()));
+                        throw new ClassCastException(String.format(RUNTIME_EXCEPTION_INVALID_MOCK_TYPE_FOR_TYPE, clazz.getCanonicalName(), mock.getClass().getName(), clazz.getName()));
                     }
                 }
-                temporaryDefaultMocks.put(clazz, object);
+                temporaryDefaultMocks.put(clazz, mock);
             }
             else
             {
