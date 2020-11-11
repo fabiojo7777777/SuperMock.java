@@ -1,4 +1,4 @@
-package supermock;
+package br.com.supermock;
 
 import java.awt.Color;
 import java.io.ByteArrayInputStream;
